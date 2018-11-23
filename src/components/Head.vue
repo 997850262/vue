@@ -60,7 +60,6 @@ export default {
 <style scoped>
 .Head-all{
     display: flex;
-    margin-top: 10px;
     margin-left: 10px;
 }
 .Head-back{

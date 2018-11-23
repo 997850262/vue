@@ -12,7 +12,7 @@
       <Select :select="select" :handeleselect="handeleselect"/>
       <Mymusic :select="select"/>
       <Footer :select="select" :play="play"/>
-      <ListenMusic :select="select" :isAcitve="isAcitve" :ispart="ispart"/>
+      <ListenMusic :select="select" :isAcitve="isAcitve" :ispart="ispart" :close="close"/>
     </div>
     <router-view/>
   </div>
@@ -42,6 +42,10 @@ export default {
     play: function () {
       this.isAcitve = true
       this.ispart = 1
+    },
+    close: function () {
+      this.isAcitve = false
+      this.ispart = 0
     }
   },
   components: {
