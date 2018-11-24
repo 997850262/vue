@@ -6,8 +6,13 @@
           <div class="title">{{store.entities[store.selectid].name}}</div>
           <div> {{currentTime}}/{{alltime}} </div>
           <div class="silder-all">
-            <img src="@/assets/btn_pause.png" class="playbtn"/>
-            <input type="range" value="0" class="silder"/>
+            <div v-if="play==true" @click="pausebtn">
+              <img src="@/assets/btn_pause.png" class="playbtn"/>
+            </div>
+            <div v-else @click="playbtn">
+              <img src="@/assets/btn_play.png" class="playbtn"/>
+            </div>
+            <input type="range" v-bind:value="value" min="0" max="100" class="silder" id="myRange" @click="slider()"/>
             <audio :src="store.entities[store.selectid].m_url" autoplay id="myAudio" @canplay="playing()" @timeupdate="timeupdate()"/>
           </div>
         </div>
@@ -22,7 +27,9 @@ export default {
     return {
       msg: 'ListenMusic组件',
       alltime: 0,
-      currentTime: 0
+      currentTime: 0,
+      value: 0,
+      play: true
     }
   },
   computed: {
@@ -50,7 +57,23 @@ export default {
         const minute = parseInt(myVideo.currentTime / 60)
         const second = parseInt(myVideo.currentTime % 60)
         this.currentTime = minute + ':' + second
+        this.value = (myVideo.currentTime / myVideo.duration) * 100
       }
+    },
+    slider: function (event) {
+      const x = document.getElementById('myRange').value
+      const myVideo = document.getElementById('myAudio')
+      myVideo.currentTime = (x * myVideo.duration) / 100
+    },
+    pausebtn: function (event) {
+      const myVideo = document.getElementById('myAudio')
+      myVideo.pause()
+      this.play = false
+    },
+    playbtn: function (event) {
+      const myVideo = document.getElementById('myAudio')
+      myVideo.play()
+      this.play = true
     }
   }
 }
@@ -129,6 +152,6 @@ input[type=range]::-webkit-slider-thumb {
     background: #ffffff;
     border-radius: 50%; /*外观设置为圆形*/
     border: solid 0.125em rgba(205, 224, 230, 0.5); /*设置边框*/
-    box-shadow: 0 .125em .125em #3b4547; /*添加底部阴影*/
+    box-shadow: 0 .125em .125em #070707; /*添加底部阴影*/
 }
 </style>

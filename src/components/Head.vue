@@ -2,15 +2,15 @@
   <div class="Head-all">
     <div class="Head-back">
       <img src="@/assets/return.png" class="Head-img" />
-      <div @click="add">我</div>
+      <div>我</div>
     </div>
-    <div class="Head-name">{{store.data.nick}} {{store.count}}</div>
-    <div class="Head-over" @click="decrement">完成</div>
+    <div class="Head-name">{{store.data.nick}}</div>
+    <div class="Head-over">完成</div>
   </div>
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+// import {mapActions} from 'vuex'
 export default {
   name: 'Head',
   data () {
@@ -25,10 +25,10 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['decrement']),
-    ...mapActions({
-      add: 'increment'
-    })
+    // ...mapActions(['decrement']),
+    // ...mapActions({
+    //   add: 'increment'
+    // })
   },
   beforeCreate () {
     console.log('beforeCreate')

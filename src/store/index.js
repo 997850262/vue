@@ -15,18 +15,9 @@ var store = new Vuex.Store({
     result: [],
     recommendresult: [],
     selectid: 0, // 存单选id
-    selectmoreid: [], // 存多选id
-    count: 0
+    selectmoreid: [] // 存多选id
   },
   mutations: {
-    // 加1
-    INCREMENT (state) {
-      state.count++
-    },
-    // 减1
-    DECREMENT (state) {
-      state.count--
-    },
     Music (state, data) {
       console.log(1, data)
       data.songlist.map((data, index) => {
@@ -46,12 +37,6 @@ var store = new Vuex.Store({
     }
   },
   actions: {
-    increment (context) {
-      context.commit('INCREMENT')
-    },
-    decrement (context) {
-      context.commit('DECREMENT')
-    },
     music (context, data) {
       context.commit('Music', data)
     },
