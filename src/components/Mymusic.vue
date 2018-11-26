@@ -32,6 +32,7 @@ export default {
   },
   computed: {
     store () {
+      console.log('store')
       var store = this.$store.state
       return store
     }
@@ -63,13 +64,14 @@ export default {
     //       console.log(err.response)
     //     }
     //   })
-
     var url = this.Home + '/v8/fcg-bin/fcg_v8_toplist_cp.fcg?g_tk=5381&uin=0&format=json&inCharset=utf-8&outCharset=utf-8&notice=0&platform=h5&needNewCode=1&tpl=3&page=detail&type=top&topid=36&_=1520777874472%20'
     this.$axios.get(url)
       .then(res => {
         console.log(res.data)
+        console.log('axios')
         this.$store.dispatch('music', res.data)
-      }).catch(error => {
+      })
+      .catch(error => {
         console.log(error)
       }
       )

@@ -35,6 +35,9 @@ export default {
       ispart: 0
     }
   },
+  watch: {
+
+  },
   methods: {
     handeleselect: function () {
       this.select = !this.select
